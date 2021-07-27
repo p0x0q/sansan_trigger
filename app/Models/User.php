@@ -10,7 +10,7 @@ class User extends Authenticatable
     use HasFactory;
     protected $table = 'user';
     protected $primaryKey = 'user_id';
-    public $timestamps = true;
+    public $timestamps = false;
     protected $guarded = [
         'user_id',
     ];
