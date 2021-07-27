@@ -20,8 +20,8 @@ class CloseController extends Controller
 
         try {
             $auth_header = $request->header('Authorization');
-            $auth = explode(":", str_replace("Basic ", "", $auth_header));
-            $user_id = base64_decode($auth[0]);
+            $auth = explode(":", base64_decode(str_replace("Basic ", "", $auth_header)));
+            $user_id = $auth[0];
             $password = $auth[1];
 
             $userinfo = User::where(['user_id' => $user_id, 'password' => $password]);
