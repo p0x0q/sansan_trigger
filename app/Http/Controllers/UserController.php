@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -79,6 +80,7 @@ class UserController extends Controller
 
         $auth_header = $request->header('Authorization');
         $auth = explode(":", str_replace("Basic ", "", $auth_header));
+        Log::debug($auth);
         $user_id = base64_decode($auth[0]);
         $password = $auth[1];
 
