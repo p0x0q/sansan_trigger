@@ -38,7 +38,7 @@ class UserController extends Controller
             return response(["message" => "Authentication Faild"], 401);
         }
 
-        $target = User::where('user_id', $request->user_id);
+        $target = User::where('user_id', $id);
         if (!$target->exists()) {
             return response([
                 "message" => "No User found",
@@ -50,7 +50,7 @@ class UserController extends Controller
             return [
                 "message" => "User details by user_id",
                 "user" => [
-                    "user_id" => $u->user_id,
+                    "user_id" => $id,
                     "nickname" => $u->nickname,
                 ],
             ];
@@ -58,7 +58,7 @@ class UserController extends Controller
             return [
                 "message" => "User details by user_id",
                 "user" => [
-                    "user_id" => $u->user_id,
+                    "user_id" => $id,
                     "nickname" => $u->nickname,
                     "comment" => $u->comment,
                 ],
