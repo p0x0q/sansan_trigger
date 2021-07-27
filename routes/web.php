@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('/recipes', 'App\Http\Controllers\RecipesController');
 Route::apiResource('/signup', 'App\Http\Controllers\SignUpController');
 Route::apiResource('/users', 'App\Http\Controllers\UserController');
+Route::apiResource('/close', 'App\Http\Controllers\CloseController');
