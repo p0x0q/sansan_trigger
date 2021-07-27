@@ -124,7 +124,7 @@ class UserController extends Controller
 
         $u = $target->get()[0];
 
-        if ($user_id != $request->user_id) {
+        if ($user_id != $id) {
             return response([
                 "message" => "No Permission for Update",
                 'auth' => $auth,
