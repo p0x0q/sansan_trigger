@@ -26,7 +26,7 @@ class CloseController extends Controller
 
             $userinfo = User::where(['user_id' => $user_id, 'password' => $password]);
             if (!$userinfo->exists()) {
-                return response(["message" => "Authentication Failed"], 401);
+                return response(["message" => "Authentication Faild"], 401);
             }
             $userinfo->delete();
             return [
@@ -34,7 +34,7 @@ class CloseController extends Controller
             ];
             // $is_login = $userinfo->exists();
         } catch (Exception $e) {
-            return response(["message" => "Authentication Failed"], 401);
+            return response(["message" => "Authentication Faild"], 401);
         }
     }
 
