@@ -101,7 +101,7 @@ class UserController extends Controller
         $request->validate($valid_dict);
         $data = $request->only(array_keys($valid_dict));
 
-        $target = User::where('user_id', $request->user_id);
+        $target = User::where('user_id', $id);
         if (!$target->exists()) {
             return response([
                 "message" => "No User found",
@@ -127,6 +127,7 @@ class UserController extends Controller
         if ($is_login == false || $user_id != $request->user_id) {
             return response([
                 "message" => "No Permission for Update",
+                'auth' => $auth,
             ], 403);
         } else {
             $u->update($data);
