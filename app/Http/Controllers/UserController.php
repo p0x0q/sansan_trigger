@@ -34,7 +34,7 @@ class UserController extends Controller
             }
             $is_login = $userinfo->exists();
         } catch (Exception $e) {
-            return response(["message" => "Authentication Faild"], 401);
+            return response(["message" => "Authentication Faild"], 402);
         }
 
         $target = User::where('user_id', $request->user_id);
