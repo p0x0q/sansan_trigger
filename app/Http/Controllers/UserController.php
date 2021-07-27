@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -77,22 +76,18 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $is_login = false;
-
-        $auth_header = $request->header('Authorization');
-        $auth = explode(":", str_replace("Basic ", "", $auth_header));
-        Log::debug($auth);
-        $user_id = base64_decode($auth[0]);
-        $password = $auth[1];
-
-        $userinfo = User::where(['user_id' => $user_id, 'password' => $password]);
-        if (!$userinfo->exists()) {
-            return response(["message" => "Authentication Failed"], 401);
-        }
-        $is_login = $userinfo->exists();
-
         try {
         } catch (Exception $e) {
+            $auth_header = $request->header('Authorization');
+            $auth = explode(":", base64_decode(str_replace("Basic ", "", $auth_header)));
+            $user_id = $auth[0];
+            $password = $auth[1];
 
+            $userinfo = User::where(['user_id' => $user_id, 'password' => $password]);
+            if (!$userinfo->exists()) {
+                return response(["message" => "Authentication Failed"], 401);
+            }
+            $is_login = $userinfo->exists();
         }
 
         $valid_dict = [
