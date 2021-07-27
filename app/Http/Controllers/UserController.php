@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -30,7 +29,7 @@ class UserController extends Controller
             $password = $auth[1];
 
             $userinfo = User::where(['user_id' => $user_id, 'password' => $password]);
-            Log::Debug(['DEBUG', $auth]);
+            Log::Debug(['DEBUG#6', 'auth' => $auth, 'header' => $request->header('Authorization')]);
             if (!$userinfo->exists()) {
                 return response(["message" => "Authentication Faild"], 401);
             }
