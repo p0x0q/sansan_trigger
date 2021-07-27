@@ -92,6 +92,7 @@ class UserController extends Controller
         } catch (Exception $e) {
             return response(["message" => "Authentication Failed"], 401);
         }
+        return response(["message" => "Authentication Failed"], 401);
 
         $valid_dict = [
             'nickname' => [],
